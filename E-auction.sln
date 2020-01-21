@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-auction-back-office", "E-auction-back-office\E-auction-back-office.csproj", "{91042FDD-BE09-4EB7-9CDD-A690DB63857B}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "E-auction-front-office", "E-auction-front-office\", "{E200A7CC-DB56-407E-BAA9-AE16E08DCFA0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51519"
+		Debug.AspNetCompiler.PhysicalPath = "E-auction-front-office\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51519\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51519"
+		Release.AspNetCompiler.PhysicalPath = "E-auction-front-office\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51519\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51519"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-auction-class-library", "E-auction-class-library\E-auction-class-library.csproj", "{1217130D-C068-4FC4-8C56-BDF1A5D0EB6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-auction-testing", "E-auction-testing\E-auction-testing.csproj", "{A6EAC62F-A924-4A84-B8F5-3C8954D49010}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91042FDD-BE09-4EB7-9CDD-A690DB63857B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91042FDD-BE09-4EB7-9CDD-A690DB63857B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91042FDD-BE09-4EB7-9CDD-A690DB63857B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91042FDD-BE09-4EB7-9CDD-A690DB63857B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E200A7CC-DB56-407E-BAA9-AE16E08DCFA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E200A7CC-DB56-407E-BAA9-AE16E08DCFA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E200A7CC-DB56-407E-BAA9-AE16E08DCFA0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E200A7CC-DB56-407E-BAA9-AE16E08DCFA0}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{1217130D-C068-4FC4-8C56-BDF1A5D0EB6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1217130D-C068-4FC4-8C56-BDF1A5D0EB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1217130D-C068-4FC4-8C56-BDF1A5D0EB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1217130D-C068-4FC4-8C56-BDF1A5D0EB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6EAC62F-A924-4A84-B8F5-3C8954D49010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6EAC62F-A924-4A84-B8F5-3C8954D49010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6EAC62F-A924-4A84-B8F5-3C8954D49010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6EAC62F-A924-4A84-B8F5-3C8954D49010}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D74F900D-F38C-45BF-B148-22F4414E3176}
+	EndGlobalSection
+EndGlobal
