@@ -8,6 +8,7 @@ namespace E_auction_class_library
         public DateTime DateCreated { get; set; }
         public string EmailAddress { get; set; }
         public string Username { get; set; }
+        public string Postcode { get; set; }
         public int CustomerID { get; set; }
     }
 }
