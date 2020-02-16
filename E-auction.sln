@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-auction-back-office", "E-auction-back-office\E-auction-back-office.csproj", "{91042FDD-BE09-4EB7-9CDD-A690DB63857B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1217130D-C068-4FC4-8C56-BDF1A5D0EB6A} = {1217130D-C068-4FC4-8C56-BDF1A5D0EB6A}
+		{A6EAC62F-A924-4A84-B8F5-3C8954D49010} = {A6EAC62F-A924-4A84-B8F5-3C8954D49010}
+		{E200A7CC-DB56-407E-BAA9-AE16E08DCFA0} = {E200A7CC-DB56-407E-BAA9-AE16E08DCFA0}
+	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "E-auction-front-office", "E-auction-front-office\", "{E200A7CC-DB56-407E-BAA9-AE16E08DCFA0}"
 	ProjectSection(WebsiteProperties) = preProject
