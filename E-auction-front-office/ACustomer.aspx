@@ -33,7 +33,7 @@
             
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             
-            <asp:Button ID="btnSubmit_Click" runat="server" Text="Submit" Height="25px" OnClientClick="btnSubmit_Click" />
+            <asp:Button ID="BtnSubmit_Click" runat="server" Text="Submit" Height="25px" OnClientClick="btnSubmit_Click" OnClick="btnSubmit_Click" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnReset_Click" runat="server" Text="Reset" />
         </div>

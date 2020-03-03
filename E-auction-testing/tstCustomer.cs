@@ -69,5 +69,112 @@ namespace E_auction_testing
             ACustomer.CustomerID = TestData;
             Assert.AreEqual(ACustomer.CustomerID, TestData);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            string Username = "test";
+            Found = ACustomer.Find(Username);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        
+        public void TestCustomerUsernameFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            string Username = "test";
+            Found = ACustomer.Find(Username);
+            if (ACustomer.Username != "test")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void TestCustomerEmailFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            string Username = "test";
+            Found = ACustomer.Find(Username);
+            if (ACustomer.EmailAddress != "test@testing.com")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void TestCustomerPostcodeFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            string Username = "test";
+            Found = ACustomer.Find(Username);
+            if (ACustomer.Postcode != "LE1 2XW")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void TestCustomerVerifiedFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            string Username = "test";
+            Found = ACustomer.Find(Username);
+            if (ACustomer.VerifiedAccount != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void TestCustomerIDFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            string Username = "test";
+            Found = ACustomer.Find(Username);
+            if (ACustomer.CustomerID != 1)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+
+        public void TestCustomerDateCreatedFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            string Username = "test";
+            Found = ACustomer.Find(Username);
+            if (ACustomer.DateCreated!= Convert.ToDateTime("16/01/2020"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+
+
     }
 }
