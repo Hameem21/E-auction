@@ -77,19 +77,19 @@ namespace E_auction_class_library
             }
                 }
 
-        public bool Find(string username)
+        public bool Find(Int32 CustomerID)
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@CustomerID", CustomerID);
             DB.Execute("sproc_TblCustomer_FilterByCustomerID");
             if(DB.Count == 1)
             {
-                mEmailAddress = Convert.ToString(DB.DataTable.Rows[1]["EmailAddress"]);
+                mEmailAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
                 mCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
-                mDateCreated = Convert.ToDateTime(DB.DataTable.Rows[2]["DateCreated"]);
-                mVerifiedAccount = Convert.ToBoolean(DB.DataTable.Rows[3]["VerifiedAccount"]);
-                mUsername = Convert.ToString(DB.DataTable.Rows[4]["Username"]);
-                mPostcode = Convert.ToString(DB.DataTable.Rows[5]["Postcode"]);
+                mDateCreated = Convert.ToDateTime(DB.DataTable.Rows[0]["DateCreated"]);
+                mVerifiedAccount = Convert.ToBoolean(DB.DataTable.Rows[0]["VerifiedAccount"]);
+                mUsername = Convert.ToString(DB.DataTable.Rows[0]["CustomerUsername"]);
+                mPostcode = Convert.ToString(DB.DataTable.Rows[0]["Postcode"]);
                 return true;
             }
             else
@@ -98,6 +98,21 @@ namespace E_auction_class_library
             }
 
             
+        }
+
+        public string Valid(string username, string emailAddress, string dateAdded, string postcode)
+        {
+            String Error = "";
+            if (username.Length < 1 || username.Length > 16)
+            {
+                Error = Error + "Username cannot be blank or over 16 characters! ";
+            }
+
+            if (!emailAddress.Contains("@")||emailAddress.Length<1||emailAddress.Length>70)
+            {
+                Error = Error + "Email is not valid";
+            }
+            return Error;
         }
     }
 }
