@@ -7,6 +7,11 @@ namespace E_auction_testing
     [TestClass]
     public class tstCustomer
     {
+        string Username = "test";
+        string EmailAddress = "test@tester.com";
+        string DateAdded = "12/01/2020";
+        string Postcode = "LE1 1AS";
+
         [TestMethod]
         public void InstanceOK(){
             //create an instance of the class we want to create
@@ -74,8 +79,8 @@ namespace E_auction_testing
         {
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
-            string Username = "test";
-            Found = ACustomer.Find(Username);
+            Int32 CustomerID = 11;
+            Found = ACustomer.Find(CustomerID);
             Assert.IsTrue(Found);
         }
 
@@ -86,8 +91,8 @@ namespace E_auction_testing
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            string Username = "test";
-            Found = ACustomer.Find(Username);
+            Int32 CustomerID = 11;
+            Found = ACustomer.Find(CustomerID);
             if (ACustomer.Username != "test")
             {
                 OK = false;
@@ -102,8 +107,8 @@ namespace E_auction_testing
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            string Username = "test";
-            Found = ACustomer.Find(Username);
+            Int32 CustomerID = 11;
+            Found = ACustomer.Find(CustomerID);
             if (ACustomer.EmailAddress != "test@testing.com")
             {
                 OK = false;
@@ -118,8 +123,8 @@ namespace E_auction_testing
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            string Username = "test";
-            Found = ACustomer.Find(Username);
+            Int32 CustomerID = 11;
+            Found = ACustomer.Find(CustomerID);
             if (ACustomer.Postcode != "LE1 2XW")
             {
                 OK = false;
@@ -134,8 +139,8 @@ namespace E_auction_testing
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            string Username = "test";
-            Found = ACustomer.Find(Username);
+            Int32 CustomerID = 11;
+            Found = ACustomer.Find(CustomerID);
             if (ACustomer.VerifiedAccount != true)
             {
                 OK = false;
@@ -150,9 +155,9 @@ namespace E_auction_testing
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            string Username = "test";
-            Found = ACustomer.Find(Username);
-            if (ACustomer.CustomerID != 1)
+            Int32 CustomerID = 11;
+            Found = ACustomer.Find(CustomerID);
+            if (ACustomer.CustomerID != 11)
             {
                 OK = false;
             }
@@ -165,8 +170,8 @@ namespace E_auction_testing
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            string Username = "test";
-            Found = ACustomer.Find(Username);
+            Int32 CustomerID = 11;
+            Found = ACustomer.Find(CustomerID);
             if (ACustomer.DateCreated!= Convert.ToDateTime("16/01/2020"))
             {
                 OK = false;
@@ -174,7 +179,65 @@ namespace E_auction_testing
             Assert.IsTrue(OK);
         }
 
+        [TestMethod]
 
+        public void ValidMethodOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            Error = ACustomer.Valid(Username, EmailAddress, DateAdded, Postcode);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void UsernameNotNull()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string username = "";
+            Error = ACustomer.Valid(username, EmailAddress, DateAdded, Postcode);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void UsernameLessthan16chars()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string username = "thisisatestingstringover16chars";
+            Error = ACustomer.Valid(username, EmailAddress, DateAdded, Postcode);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void Emailcontainsat()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string emailAddress = "testtester.com";
+            Error = ACustomer.Valid(Username, emailAddress, DateAdded, Postcode);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailNotNull()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string emailAddress = "test@tester.com";
+            Error = ACustomer.Valid(Username, emailAddress, DateAdded, Postcode);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailNotOver70()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string emailAddress = ""; 
+            emailAddress = emailAddress.PadRight(70, 'a');
+            Error = ACustomer.Valid(Username, emailAddress, DateAdded, Postcode);
+            Assert.AreNotEqual(Error, "");
+        }
 
     }
 }
