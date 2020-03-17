@@ -108,9 +108,24 @@ namespace E_auction_class_library
                 Error = Error + "Username cannot be blank or over 16 characters! ";
             }
 
-            if (!emailAddress.Contains("@")||emailAddress.Length<1||emailAddress.Length>70)
+            if (!emailAddress.Contains("@")||emailAddress.Length<7||emailAddress.Length>70)
             {
                 Error = Error + "Email is not valid";
+            }
+            try {
+            if(Convert.ToDateTime(dateAdded)< Convert.ToDateTime("01/01/2020")|| Convert.ToDateTime(dateAdded)> DateTime.Now)
+            {
+                Error = Error + "Date added cannot be before the creation of the website or in the future! ";
+            }
+            }
+            catch
+            {
+                Error = Error + "The date was provided in an invalid format! ";
+            }
+
+            if (8 < postcode.Length || 6 > postcode.Length)
+            {
+                Error = Error + "Postcode is in an invalid format! ";
             }
             return Error;
         }

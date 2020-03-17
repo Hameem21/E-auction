@@ -239,5 +239,60 @@ namespace E_auction_testing
             Assert.AreNotEqual(Error, "");
         }
 
+
+        [TestMethod]
+        public void dateAddedBeforeLive()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string dateAdded = "";
+            dateAdded = "01/01/2019";
+            Error = ACustomer.Valid(Username, EmailAddress, dateAdded, Postcode);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void dateAddedInFuture()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string dateAdded = "";
+            dateAdded = "01/01/2021";
+            Error = ACustomer.Valid(Username, EmailAddress, dateAdded, Postcode);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void dateAddedInvalidFormat()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string dateAdded = "";
+            dateAdded = "hello";
+            Error = ACustomer.Valid(Username, EmailAddress, dateAdded, Postcode);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void postcodeTooShort()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string postcode = "";
+            postcode = "LE 3X";
+            Error = ACustomer.Valid(Username, EmailAddress, DateAdded, postcode);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void postcodeTooLong()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string postcode = "";
+            postcode = "LE 3X";
+            Error = ACustomer.Valid(Username, EmailAddress, DateAdded, postcode);
+            Assert.AreNotEqual(Error, "");
+        }
     }
 }

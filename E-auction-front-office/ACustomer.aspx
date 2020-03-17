@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        #TextArea1 {
+            width: 323px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -35,6 +40,10 @@
             &nbsp;&nbsp;&nbsp;
             
             <asp:Button ID="BtnFind" runat="server" Text="Find" Height="25px" OnClientClick="btnFind_Click" OnClick="btnFind_Click" />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lblError<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="lblError" runat="server"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <br />
             <br />
             

@@ -11,12 +11,25 @@ public partial class ACustomer : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         clsCustomer ACustomer = new clsCustomer();
-        ACustomer.EmailAddress = txtEmail.Text;
-        ACustomer.Postcode = txtPostcode.Text;
-        ACustomer.Username = txtUsername.Text;
-        ACustomer.DateCreated = DateTime.Now;
-        Session["ACustomer"] = ACustomer;
-        Response.Redirect("CustomerViewer.aspx");
+        string EmailAddress = txtEmail.Text;
+        string Postcode = txtPostcode.Text;
+        string Username = txtUsername.Text;
+        string DateAdded = Convert.ToString(DateTime.Now);
+        string Error = "";
+        Error = ACustomer.Valid(EmailAddress, Postcode, Username, DateAdded);
+        if (Error == "")
+        {
+            ACustomer.EmailAddress = txtEmail.Text;
+            ACustomer.Postcode = txtPostcode.Text;
+            ACustomer.Username = txtUsername.Text;
+            ACustomer.DateCreated = DateTime.Now;
+            Session["ACustomer"] = ACustomer;
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
