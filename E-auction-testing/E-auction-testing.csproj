@@ -49,9 +49,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tstCustomer.cs" />
     <Compile Include="tstItems.cs" />
+    <Compile Include="tstReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
