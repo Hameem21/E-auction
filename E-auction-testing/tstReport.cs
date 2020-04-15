@@ -5,7 +5,7 @@ namespace E_auction_testing
 {
     [TestClass]
     public class tstReport
-    {
+    
         [TestMethod]
         public void InstanceOK()
         {
@@ -13,6 +13,6 @@ namespace E_auction_testing
             clsReport AReport = new clsReport();
             //test to see that it exists
             Assert.IsNotNull(AReport);
-        }
+         }
     }
 }
