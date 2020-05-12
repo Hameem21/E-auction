@@ -108,7 +108,7 @@ namespace E_auction_class_library
                 Error = Error + "Username cannot be blank or over 16 characters! ";
             }
 
-            if (!emailAddress.Contains("@")||emailAddress.Length<7||emailAddress.Length>70)
+            else if (!emailAddress.Contains("@")||emailAddress.Length<7||emailAddress.Length>70)
             {
                 Error = Error + "Email is not valid";
             }
