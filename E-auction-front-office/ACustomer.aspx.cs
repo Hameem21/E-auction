@@ -8,6 +8,31 @@ using E_auction_class_library;
 
 public partial class ACustomer : System.Web.UI.Page
 {
+    Int32 CustomerID;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if(IsPostBack == false)
+        {
+            if(CustomerID != -1)
+            {
+                DisplayCustomers();
+            }
+        }
+    }
+
+    void DisplayCustomers()
+    {
+        clsCustomerCollection CustomerList = new clsCustomerCollection();
+        CustomerList.ThisCustomer.Find(CustomerID);
+        txtCustomerID.Text = CustomerList.ThisCustomer.CustomerID.ToString();
+        txtEmail.Text = CustomerList.ThisCustomer.EmailAddress;
+        txtPostcode.Text = CustomerList.ThisCustomer.Postcode;
+        txtUsername.Text = CustomerList.ThisCustomer.Username;
+        txtDateAdded.Text = CustomerList.ThisCustomer.DateCreated.ToString();
+        
+
+    }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         clsCustomer ACustomer = new clsCustomer();
@@ -23,8 +48,24 @@ public partial class ACustomer : System.Web.UI.Page
             ACustomer.Postcode = txtPostcode.Text;
             ACustomer.Username = txtUsername.Text;
             ACustomer.DateCreated = DateTime.Now;
-            Session["ACustomer"] = ACustomer;
-            Response.Redirect("CustomerViewer.aspx");
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            CustomerList.ThisCustomer = ACustomer;
+            CustomerList.Add();
+            
+            // Session["ACustomer"] = ACustomer;
+            // Response.Redirect("CustomerViewer.aspx");
+            if(CustomerID == -1)
+            {
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Add();
+            }
+            else
+            {
+                CustomerList.ThisCustomer.Find(CustomerID);
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Update();
+            }
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
@@ -47,5 +88,10 @@ public partial class ACustomer : System.Web.UI.Page
             txtCustomerID.Text = ACustomer.CustomerID.ToString();
             txtDateAdded.Text = ACustomer.DateCreated.ToString();
         }
+    }
+
+    protected void lblError_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }
