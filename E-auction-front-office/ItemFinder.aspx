@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+     <div>
         <p>
             ItemNo<asp:TextBox ID="TxtItemNo" runat="server" style="margin-left: 62px" Width="165px"></asp:TextBox>
         &nbsp;<asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
@@ -25,10 +25,11 @@
         <p>
             ItemDateOfAvailability<asp:TextBox ID="TxtItemDateOfAvailability" runat="server" style="margin-left: 6px" Width="165px"></asp:TextBox>
         </p>
-        <p>
-            ItemAvailability
-            <asp:TextBox ID="TxtItemAvailability" runat="server" style="margin-left: 16px" Width="168px"></asp:TextBox>
+         <p>
+             <asp:CheckBox ID="ItemAvailability" runat="server" />
         </p>
+         <p>
+             &nbsp;</p>
         </div>
     </form>
 </body>

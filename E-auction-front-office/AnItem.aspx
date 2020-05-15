@@ -8,33 +8,33 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <p>
-            ItemNo<asp:TextBox ID="TxtItemNo" runat="server" style="margin-left: 62px" Width="165px"></asp:TextBox>
-        &nbsp;<asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
-        </p>
-        <p>
-            ItemDescription<asp:TextBox ID="TxtItemDescription" runat="server" style="margin-left: 13px" Width="165px"></asp:TextBox>
-        </p>
-        <p>
-            ItemQuantity<asp:TextBox ID="TxtItemQuantity" runat="server" style="margin-left: 30px" Width="165px"></asp:TextBox>
-        </p>
-        <p>
-            ItemPricePerUnit<asp:TextBox ID="TxtItemPricePerUnit" runat="server" style="margin-left: 30px" Width="165px"></asp:TextBox>
-        </p>
-        <p>
-            ItemDateOfAvailability<asp:TextBox ID="TxtItemDateOfAvailability" runat="server" style="margin-left: 6px" Width="165px"></asp:TextBox>
-        </p>
-        <p>
-            ItemAvailability
-            <asp:TextBox ID="TxtItemAvailability" runat="server" style="margin-left: 16px" Width="165px"></asp:TextBox>
-        </p>
-        <p>
+        <div>
+            ItemNo<asp:TextBox ID="TxtItemNo" runat="server"  style="margin-left: 29px" Width="145px"></asp:TextBox>
+            <br />
+            <br />
+            ItemDescription
+            <asp:TextBox ID="TxtItemDescription" runat="server" style="margin-left: 10px" Width="147px"></asp:TextBox>
+            <asp:Button ID="btnFind" runat="server" Text="Find" OnClick="btnFind_Click1" />
+            <br />
+            <br />
+            ItemQuantity<asp:TextBox ID="TxtItemQuantity" runat="server" style="margin-left: 21px" Width="154px"></asp:TextBox>
+            <br />
+            <br />
+            ItemPricePerUnit<asp:TextBox ID="TxtItemPricePerUnit" runat="server" style="margin-left: 14px" Width="150px"></asp:TextBox>
+            <br />
+            <br />
+            ItemDateOfAvailability<asp:TextBox ID="TxtItemDateOfAvailability" runat="server" style="margin-left: 12px" Width="144px"></asp:TextBox>
+            <br />
+            <br />
+            <asp:CheckBox ID="ItemAvailability" runat="server" />
+            <br />
+            <br />
             <asp:Label ID="lblError" runat="server" Text="lblError"></asp:Label>
-        </p>
-        <p>
-            <asp:Button ID="btnOK" runat="server" Text="OK" OnClick="btnOK_Click" />
+            <br />
+            <br />
+            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" />
             <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
-        </p>
+        </div>
     </form>
 </body>
 </html>

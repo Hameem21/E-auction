@@ -27,8 +27,9 @@ namespace E_auction_class_library
         private bool mItemAvailability;
         public Boolean ItemAvailability { get { return mItemAvailability; } set { mItemAvailability = value; } }
 
+        
 
-        public bool Find(Int32 ItemNo)
+        public bool Find(int ItemNo)
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@ItemNo", ItemNo);
@@ -41,7 +42,7 @@ namespace E_auction_class_library
                 mItemPricePerUnit = Convert.ToDecimal(DB.DataTable.Rows[0]["ItemPricePerUnit"]);
                 mItemDateOfAvailability = Convert.ToDateTime(DB.DataTable.Rows[0]["ItemDateOfAvailability"]);
                 mItemAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["ItemAvailability"]);
-
+               
                 return true;
             }
 
@@ -51,50 +52,42 @@ namespace E_auction_class_library
             }
         }
 
-        public string Valid(string ItemNo, string ItemDescription, string ItemQuantity, string ItemPricePerUnit, string ItemDateOfAvailability, string ItemAvailability)
+        public string Valid(string ItemDescription, string ItemQuantity, string ItemPricePerUnit, string ItemDateOfAvailability)
         {
             String Error = "";
 
-            if (ItemNo.Length ==0)
-            {
-                Error = Error + "The Item Number cannot be blank: ";
-            }
-            if (ItemNo.Length > 6)
-            {
-                Error = Error + "The Item Number must be less than 6 characters: ";
-            }
             if (ItemDescription.Length == 0)
             {
-                
-                Error = Error + "The Item Description may not be blank : ";
+
+                Error = Error + "The Item Description may not be blank  ";
             }
-            
+
             if (ItemDescription.Length > 50)
             {
-                
-                Error = Error + "The Item Description must be less than 50 characters : ";
+
+                Error = Error + "The Item Description must be less than 50 characters  ";
             }
             if (ItemQuantity.Length == 0)
             {
 
-                Error = Error + "The Item Quantity cannot be blank : ";
+                Error = Error + "The Item Quantity cannot be blank  ";
             }
 
             if (ItemQuantity.Length > 10000)
             {
 
-                Error = Error + "The Item Quantity must be less than 10000 : ";
+                Error = Error + "The Item Quantity must be less than 10000  ";
             }
             if (ItemPricePerUnit.Length == 0)
             {
 
-                Error = Error + "The Item PricePerUnit cannot be blank : ";
+                Error = Error + "The Item PricePerUnit cannot be blank  ";
             }
 
             if (ItemQuantity.Length > 999999999999.99)
             {
 
-                Error = Error + "The Item Quantity must be less than 999999999999.99 : ";
+                Error = Error + "The Item Quantity must be less than 999999999999.99  ";
             }
 
             try
@@ -102,9 +95,12 @@ namespace E_auction_class_library
 
                 if (Convert.ToDateTime(ItemDateOfAvailability) > DateTime.Now)
                 {
-                    Error = Error + "The Date Of Availability cannot be in the future:";
+                    Error = Error + "The Date Of Availability cannot be in the future";
                 }
+
+                
             }
+
             catch
             {
                 Error = Error + "The date was provided in an invalid format please change this!";

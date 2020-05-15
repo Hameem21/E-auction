@@ -8,12 +8,12 @@ namespace E_auction_testing
     public class tstItems
     {
 
-        string ItemNo = "11";
+        
         string ItemDescription = "test";
         string ItemQuantity = "1";
         string ItemPricePerUnit = "1";
-        string ItemDateOfAvailability = "01/01/2020";
-        string ItemAvailability = "True";
+        string ItemDateOfAvailability = DateTime.Now.Date.ToString();
+
 
         [TestMethod]
         public void InstanceOK()
@@ -23,16 +23,16 @@ namespace E_auction_testing
         }
 
         [TestMethod]
-        public void ItemNoOK()
+        public void ItemNoPropertyOK()
         {
             clsItems AnItem = new clsItems();
-            int TestData = 11;
+            Int32 TestData = 11;
             AnItem.ItemNo = TestData;
             Assert.AreEqual(AnItem.ItemNo, TestData);
         }
 
         [TestMethod]
-        public void ItemDescriptionOK()
+        public void ItemDescriptionPropertyOK()
         {
 
             clsItems AnItem = new clsItems();
@@ -42,16 +42,16 @@ namespace E_auction_testing
         }
 
         [TestMethod]
-        public void ItemQuantityOK()
+        public void ItemQuantityPropertyOK()
         {
             clsItems AnItem = new clsItems();
-            int TestData = 1;
+            Int32 TestData = 1;
             AnItem.ItemQuantity = TestData;
             Assert.AreEqual(AnItem.ItemQuantity, TestData);
         }
 
         [TestMethod]
-        public void ItemPricePerUnitOK()
+        public void ItemPricePerUnitPropertyOK()
         {
             clsItems AnItem = new clsItems();
             Decimal TestData = Convert.ToDecimal("1");
@@ -61,7 +61,7 @@ namespace E_auction_testing
 
         [TestMethod]
 
-        public void ItemDateOfAvailabilityOK()
+        public void ItemDateOfAvailabilityPropertyOK()
         {
             clsItems AnItem = new clsItems();
             DateTime TestData = DateTime.Now.Date;
@@ -70,14 +70,14 @@ namespace E_auction_testing
         }
 
         [TestMethod]
-        public void ItemAvailabilityOK()
+        public void ItemAvailabilityPropertyOK()
         {
             clsItems AnItem = new clsItems();
-            bool TestData = true;
+            Boolean TestData = true;
             AnItem.ItemAvailability = TestData;
             Assert.AreEqual(AnItem.ItemAvailability, TestData);
         }
-
+        
         /////////////////FIND METHOD STARTS FROM HERE/////////////////////////////
 
 
@@ -86,7 +86,7 @@ namespace E_auction_testing
         {
             clsItems AnItem = new clsItems();
             Boolean Found = false;
-            Int32 ItemNo = 11;
+            Int32 ItemNo = 12;
             Found = AnItem.Find(ItemNo);
             Assert.IsTrue(Found);
         }
@@ -98,9 +98,9 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 11;
+            Int32 ItemNo = 12;
             Found = AnItem.Find(ItemNo);
-            if (AnItem.ItemNo != 11)
+            if (AnItem.ItemNo != 12)
             {
                 OK = false;
             }
@@ -112,9 +112,9 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 11;
+            Int32 ItemNo = 12;
             Found = AnItem.Find(ItemNo);
-            if (AnItem.ItemDescription != Convert.ToString("test"))
+            if (AnItem.ItemDescription != "computer")
             {
                 OK = false;
             }
@@ -126,9 +126,9 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 11;
+            Int32 ItemNo = 12;
             Found = AnItem.Find(ItemNo);
-            if (AnItem.ItemQuantity != 1)
+            if (AnItem.ItemQuantity != 2)
             {
                 OK = false;
             }
@@ -140,9 +140,9 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 11;
+            Int32 ItemNo = 12;
             Found = AnItem.Find(ItemNo);
-            if (AnItem.ItemPricePerUnit != Convert.ToDecimal("1"))
+            if (AnItem.ItemPricePerUnit != Convert.ToDecimal("25"))
             {
                 OK = false;
             }
@@ -154,9 +154,9 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 11;
+            Int32 ItemNo = 12;
             Found = AnItem.Find(ItemNo);
-            if (AnItem.ItemDateOfAvailability != Convert.ToDateTime("01/01/2020"))
+            if (AnItem.ItemDateOfAvailability != Convert.ToDateTime("02/02/2020"))
             {
                 OK = false;
 
@@ -169,7 +169,7 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 11;
+            Int32 ItemNo = 12;
             Found = AnItem.Find(ItemNo);
             if (AnItem.ItemAvailability != true)
             {
@@ -180,6 +180,8 @@ namespace E_auction_testing
         }
 
 
+
+
         /// /////VALID METHOD////////
 
         [TestMethod]
@@ -187,77 +189,8 @@ namespace E_auction_testing
         {
             clsItems AnItem = new clsItems();
             String Error = "";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void ItemNoNotNull()
-        {
-            clsItems AnItem = new clsItems();
-            String Error = "";
-            string ItemNo = "";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void ItemNoMin()
-        {
-            clsItems AnItem = new clsItems();
-            String Error = "";
-            string ItemNo = "1";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void ItemNoMinPlusOne()
-        {
-            clsItems AnItem = new clsItems();
-            String Error = "";
-            string ItemNo = "12";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void ItemNoMaxLessOne()
-        {
-            clsItems AnItem = new clsItems();
-            String Error = "";
-            string ItemNo = "12345";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void ItemNoMax()
-        {
-            clsItems AnItem = new clsItems();
-            String Error = "";
-            string ItemNo = "123456";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreEqual(Error, "");
-        }
-        [TestMethod]
-        public void ItemNoMid()
-        {
-            clsItems AnItem = new clsItems();
-            String Error = "";
-            string ItemNo = "123";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void ItemNoMaxPlusOne()
-        {
-            clsItems AnItem = new clsItems();
-            String Error = "";
-            ItemNo = ItemNo.PadRight(7, '1');
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -266,7 +199,7 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemDescription = "";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -276,8 +209,18 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemDescription = "a";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemDescriptionMinLessOne()
+        {
+            clsItems AnItem = new clsItems();
+            String Error = "";
+            string ItemDescription = "";
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -286,7 +229,7 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemDescription = "ab";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -297,9 +240,10 @@ namespace E_auction_testing
             String Error = "";
             string ItemDescription = "";
             ItemDescription = ItemDescription.PadRight(25, 'a');
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
+
 
         [TestMethod]
         public void ItemDescriptionMaxValue()
@@ -308,7 +252,7 @@ namespace E_auction_testing
             String Error = "";
             string ItemDescription = "";
             ItemDescription = ItemDescription.PadRight(50, 'a');
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -319,7 +263,7 @@ namespace E_auction_testing
             String Error = "";
             string ItemDescription = "";
             ItemDescription = ItemDescription.PadRight(49, 'a');
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -330,7 +274,7 @@ namespace E_auction_testing
             String Error = "";
             string ItemDescription = "";
             ItemDescription = ItemDescription.PadRight(51, 'a');
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -340,17 +284,18 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemQuantity = "";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreNotEqual(Error, "");
         }
-
+    
+        
         [TestMethod]
         public void ItemQuantityMin()
         {
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemQuantity = "1";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -360,7 +305,7 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemQuantity = "12";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -371,7 +316,7 @@ namespace E_auction_testing
             String Error = "";
             string ItemQuantity = "";
             ItemQuantity = ItemQuantity.PadRight(9999, '1');
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -382,7 +327,7 @@ namespace E_auction_testing
             String Error = "";
             string ItemQuantity = "";
             ItemQuantity = ItemQuantity.PadRight(10000, '1');
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -394,7 +339,7 @@ namespace E_auction_testing
             String Error = "";
             string ItemQuantity = "";
             ItemQuantity = ItemQuantity.PadRight(10001, '1'); //this will fail
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -404,7 +349,7 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemPricePerUnit = "";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -414,7 +359,7 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemPricePerUnit = "0.001";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -424,7 +369,7 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemPricePerUnit = "0.010";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -434,7 +379,7 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemPricePerUnit = "999999999999.99";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -444,18 +389,18 @@ namespace E_auction_testing
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemPricePerUnit = "fifteen pounds";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
-        [TestMethod] //not really sure about how to do this
+        [TestMethod]
         public void ItemDateOfAvailabilityPast()
         {
             clsItems AnItem = new clsItems();
             String Error = "";
             string ItemDateOfAvailability = "";
             ItemDateOfAvailability = "02/02/19";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
@@ -466,7 +411,7 @@ namespace E_auction_testing
             String Error = "";
             string ItemDateOfAvailability = "";
             ItemDateOfAvailability = "01/01/21";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -475,17 +420,16 @@ namespace E_auction_testing
         {
             clsItems AnItem = new clsItems();
             String Error = "";
-            string ItemNo = "11";
             string ItemDescription = "chairs";
             string ItemQuantity = "2";
             string ItemPricePerUnit = "2.30";
             string ItemDateOfAvailability = "this is just words!";
             ItemDateOfAvailability = "2nd February 2020";
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreNotEqual(Error, "");
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void ItemDateOfAvailabilityMin()
         {
             clsItems AnItem = new clsItems();
@@ -493,11 +437,11 @@ namespace E_auction_testing
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             string ItemDateOfAvailability = TestDate.ToString();
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
-        [TestMethod]
+       [TestMethod]
         public void ItemDateOfAvailabilityMinLessOne()
         {
             clsItems AnItem = new clsItems();
@@ -506,21 +450,21 @@ namespace E_auction_testing
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
             string ItemDateOfAvailability = TestDate.ToString();
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
             Assert.AreEqual(Error, "");
         }
 
-        [TestMethod]
+       [TestMethod]
         public void ItemDateOfAvailabilityExtremeMin()
         {
             clsItems AnItem = new clsItems();
             String Error = "";
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddDays(-100);
+            TestDate = TestDate.AddYears(-100);
             string ItemDateOfAvailability = TestDate.ToString();
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreEqual(Error, "");
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
+            Assert.AreEqual(Error,"");
         }
 
         [TestMethod]
@@ -532,12 +476,12 @@ namespace E_auction_testing
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
             string ItemDateOfAvailability = TestDate.ToString();
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreEqual(Error, "");
+            Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
-        public void ItemDateOfAvailabilityExtreme()
+        public void ItemDateOfAvailabilityExtremeMax()
         {
             clsItems AnItem = new clsItems();
             String Error = "";
@@ -545,22 +489,8 @@ namespace E_auction_testing
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
             string ItemDateOfAvailability = TestDate.ToString();
-            Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-            Assert.AreEqual(Error, "");
-        }*/
+            Error = AnItem.Valid( ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
+            Assert.AreNotEqual(Error, "");
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

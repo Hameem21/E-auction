@@ -9,10 +9,7 @@
 <body>
     <form id="form2" runat="server">
         <p>
-            ItemNo<asp:TextBox ID="TxtItemNo" runat="server" style="margin-left: 62px" Width="165px"></asp:TextBox>
-        &nbsp;</p>
-        <p>
-            ItemDescription<asp:TextBox ID="TxtItemDescription" runat="server" style="margin-left: 13px" Width="165px"></asp:TextBox>
+        &nbsp;ItemDescription<asp:TextBox ID="TxtItemDescription" runat="server" style="margin-left: 13px" Width="165px"></asp:TextBox>
         </p>
         <p>
             ItemQuantity<asp:TextBox ID="TxtItemQuantity" runat="server" style="margin-left: 30px" Width="165px"></asp:TextBox>
@@ -21,14 +18,14 @@
             ItemPricePerUnit<asp:TextBox ID="TxtItemPricePerUnit" runat="server" style="margin-left: 30px" Width="165px"></asp:TextBox>
         </p>
         <p>
-            ItemDateofAvailability<asp:TextBox ID="TxtDateOfAvailability" runat="server" style="margin-left: 6px" Width="165px"></asp:TextBox>
+            ItemDateofAvailability<asp:TextBox ID="TxtItemDateOfAvailability" runat="server" style="margin-left: 6px" Width="165px"></asp:TextBox>
         </p>
         <p>
-            ItemAvailability
-            <asp:TextBox ID="TxtItemAvailability" runat="server" style="margin-left: 16px" Width="168px"></asp:TextBox>
+            &nbsp;<asp:CheckBox ID="ItemAvailability" runat="server" />
         </p>
         <p>
-            <asp:Button ID="btnOK" runat="server" Text="OK" OnClick="btnOK_Click1" />
+            <asp:Button ID="btnOK" runat="server" Text="OK" OnClick="btnOK_Click" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
         </p>
     </form>
 </body>

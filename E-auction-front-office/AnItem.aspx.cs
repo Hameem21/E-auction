@@ -1,46 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using E_auction_class_library;
 
 public partial class AnItem : System.Web.UI.Page
 {
+    Int32 ItemNo;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        clsItems AnItem = new clsItems();
-        AnItem = (clsItems)Session["AnItem"];
-        Response.Write(AnItem.ItemNo);
+        ItemNo = Convert.ToInt32(Session["ItemNo"]);
+        if (IsPostBack == false)
+        {
+            if (ItemNo != -1)
+            {
+                DisplayItems();
+            }
+        }
+
+    }
+
+    void DisplayItems()
+    {
+        clsItemsCollection ItemBook = new clsItemsCollection();
+        ItemBook.ThisItem.Find(ItemNo);
+
+        TxtItemNo.Text = ItemBook.ThisItem.ItemNo.ToString();
+        TxtItemDescription.Text = ItemBook.ThisItem.ItemDescription;
+        TxtItemQuantity.Text = ItemBook.ThisItem.ItemQuantity.ToString();
+        TxtItemPricePerUnit.Text = ItemBook.ThisItem.ItemPricePerUnit.ToString();
+        TxtItemDateOfAvailability.Text = ItemBook.ThisItem.ItemDateOfAvailability.ToString();
+        ItemAvailability.Checked = ItemBook.ThisItem.ItemAvailability;
 
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsItems AnItem = new clsItems();
-        string ItemNo = TxtItemNo.Text;
+
+
         string ItemDescription = TxtItemDescription.Text;
         string ItemQuantity = TxtItemQuantity.Text;
         string ItemPricePerUnit = TxtItemPricePerUnit.Text;
         string ItemDateOfAvailability = TxtItemDateOfAvailability.Text;
-        string ItemAvailability = TxtItemAvailability.Text;
         string Error = "";
-        Error = AnItem.Valid(ItemNo, ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
+        Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability);
 
         if (Error == "")
         {
-            AnItem.ItemNo = Convert.ToInt32(ItemNo);
+            AnItem.ItemNo = ItemNo;
             AnItem.ItemDescription = ItemDescription;
             AnItem.ItemQuantity = Convert.ToInt32(ItemQuantity);
             AnItem.ItemPricePerUnit = Convert.ToDecimal(ItemPricePerUnit);
             AnItem.ItemDateOfAvailability = Convert.ToDateTime(ItemDateOfAvailability);
-            AnItem.ItemAvailability = Convert.ToBoolean(ItemAvailability);
-
-            Session["AnItem"] = AnItem;
-            Response.Redirect("ItemViewer.aspx");
+            AnItem.ItemAvailability = ItemAvailability.Checked;
 
 
+            clsItemsCollection ItemsList = new clsItemsCollection();
+
+            if (ItemNo == -1)
+            {
+                ItemsList.ThisItem = AnItem;
+                ItemsList.Add();
+            }
+
+
+            else
+            {
+                ItemsList.ThisItem.Find(ItemNo);
+                ItemsList.ThisItem = AnItem;
+                ItemsList.Update();
+            }
+            Response.Redirect("ItemsList.aspx");
         }
         else
         {
@@ -48,7 +82,7 @@ public partial class AnItem : System.Web.UI.Page
         }
     }
 
-    protected void btnFind_Click(object sender, EventArgs e)
+    protected void btnFind_Click1(object sender, EventArgs e)
     {
         clsItems AnItem = new clsItems();
         Int32 ItemNo;
@@ -57,118 +91,16 @@ public partial class AnItem : System.Web.UI.Page
         Found = AnItem.Find(ItemNo);
         if (Found == true)
         {
+            Session["AnItem"] = AnItem;
+            Response.Redirect("AnItem.aspx");
             TxtItemNo.Text = AnItem.ItemNo.ToString();
             TxtItemDescription.Text = AnItem.ItemDescription;
             TxtItemQuantity.Text = AnItem.ItemQuantity.ToString();
             TxtItemPricePerUnit.Text = AnItem.ItemPricePerUnit.ToString();
             TxtItemDateOfAvailability.Text = AnItem.ItemDateOfAvailability.ToString();
-            TxtItemAvailability.Text = AnItem.ItemAvailability.ToString();
-
         }
-
     }
 }
-
-
-
-
-
-
-
-
-/* this is for btnOK_click before 
-       clsItems AnItem = new clsItems();
-       AnItem.ItemNo = Convert.ToInt32(TxtItemNo.Text);
-       AnItem.ItemDescription = TxtItemDescription.Text;
-       AnItem.ItemQuantity = Convert.ToInt32(TxtItemQuantity.Text);
-       AnItem.ItemPricePerUnit = Convert.ToDecimal(TxtItemPricePerUnit.Text);
-       AnItem.ItemDateOfAvailability = Convert.ToDateTime(TxtItemDateOfAvailability.Text);
-       AnItem.ItemAvailability = Convert.ToBoolean(TxtItemAvailability.Text);
-
-       Session["AnItem"] = AnItem;
-       Response.Redirect("ItemViewer.aspx"); */
-
-
-
-
-
-
-
-
-
-
-
-/*string ItemDescription = TxtItemDescription.Text;
-string ItemQuantity = TxtItemQuantity.Text;
-string ItemPricePerUnit = TxtPricePerUnit.Text;
-string ItemDateOfAvailability = TxtDateOfAvailability.Text;
-string ItemAvailability = TxtItemAvailability.Text;
-string Error = "";
-Error = AnItem.Valid(ItemDescription, ItemQuantity, ItemPricePerUnit, ItemDateOfAvailability, ItemAvailability);
-if (Error == "")
-{
-AnItem.ItemDescription = TxtItemDescription.Text;
-AnItem.ItemQuantity = Convert.ToInt32(TxtItemQuantity.Text);
-AnItem.ItemPricePerUnit = Convert.ToDecimal(TxtPricePerUnit.Text);
-AnItem.ItemDateofAvailability = Convert.ToDateTime(TxtDateOfAvailability.Text);
-AnItem.ItemAvailability = Convert.ToBoolean(TxtItemAvailability.Text);
-clsItemsCollection ItemsList = new clsItemsCollection();
-ItemsList.ThisItem = AnItem;
-ItemsList.Add();
-Response.Redirect("ItemsList.aspx");
-}
-else
-{
-lblError.Text = Error;
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* AnItem.ItemNo = Convert.ToInt32(TxtItemNo.Text);
- AnItem.ItemDescription = TxtItemDescription.Text;
- AnItem.ItemQuantity = Convert.ToInt32(TxtItemQuantity.Text);
- AnItem.ItemPricePerUnit = Convert.ToDecimal(TxtPricePerUnit.Text);
- AnItem.ItemDateofAvailability = Convert.ToDateTime(TxtDateOfAvailability.Text);
- AnItem.ItemAvailability = Convert.ToBoolean(TxtItemAvailability.Text);
-
- Session["AnItem"] = AnItem;
- Response.Redirect("ItemViewer.aspx"); */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
