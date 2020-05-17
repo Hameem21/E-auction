@@ -9,10 +9,11 @@ using System.Data;
 namespace E_auction_class_library
 
 {
-    ///This class uses the ado.net sql classes to provide a connection to an sql server database.
+    ///This class uses the ado.net sql classes to provide a connection to an Azure sql server database.
     ///it is free for use by anybody so long as you give credit to the original author i.e me
-    ///Matthew Dean mjdean@dmu.ac.uk De Montfort University 2013
-    class clsDataConnection
+    ///Matthew Dean mjdean@dmu.ac.uk De Montfort University 2019
+
+    public class clsDataConnection
     {
         //connection object used to connect to the database
         SqlConnection connectionToDB = new SqlConnection();
@@ -216,3 +217,6 @@ namespace E_auction_class_library
         }
     }
 }
+
+
+
