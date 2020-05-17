@@ -174,11 +174,12 @@ namespace E_auction_testing
                 {
                     OK = false;
                 }
+                else
+                {
+                    OK = false;
+                }
             }
-            else
-            {
-                OK = true;
-            }
+            
             Assert.IsTrue(OK);
         }
     }
